@@ -8,7 +8,7 @@ import responses
 
 
 def run_discord_bot():
-    TOKEN = 'MTEyMDE4NTc3MzE4Mjk1OTY3OA.GLtPyp.NCmsImVagA79vcofxl33kwvHyed0D5T44-vtbE'
+    TOKEN = ''
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
