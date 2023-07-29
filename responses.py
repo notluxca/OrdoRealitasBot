@@ -60,17 +60,18 @@ def handle_response(message):
                 count = 0
                 for i in results:
                     count += i
-                if rollRequest[1] == 20:    
+                
+                # CONSERTAR
+                if rollRequest[1] == '20':    
                     if lookForCritic(results):
                         return criticRollEmbed(message, results, rolled, count) 
                 else: 
-                    print(rollRequest)
                     return rollEmbed(message, results, rolled, count)
             
 
             else:
                 result = random.randint(1,int(rollRequest[1]))
-                return rollEmbed(message, result)
+                return singleRollEmbed(message, result, rolled)
     else:
         return ""
 
@@ -182,16 +183,35 @@ def rollEmbed(message, results, whatRolled, resultsSum):
     return embed
 
 def criticRollEmbed(message, results, whatRolled, resultsSum):
-    embed = discord.Embed(title=f"Resultado: {max(results)}",
-                      description=f"ACERTO CRITICO!\nsoma total: {resultsSum}", colour=0x1eff00)
+    embed = discord.Embed(title=f"ABALBALBABAL: {max(results)}",
+                      description=f"soma total: {resultsSum}")
 
     embed.set_author(name=f"{message.author} rolou {whatRolled}", icon_url=message.author.avatar)
 
-    embed.set_thumbnail(url="https://media4.giphy.com/media/3oriNPdeu2W1aelciY/giphy.gif?cid=ecf05e477kkd0jk7u2594mvgxk3pzvgl8fh8svtt6vtdck70&ep=v1_gifs_search&rid=giphy.gif&ct=g")
+    embed.set_thumbnail(url="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4bcc2548-937b-4948-a8de-df85c179759b/dclcb4s-c9b126cf-505d-4d7b-a25f-9b0df66b5d92.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzRiY2MyNTQ4LTkzN2ItNDk0OC1hOGRlLWRmODVjMTc5NzU5YlwvZGNsY2I0cy1jOWIxMjZjZi01MDVkLTRkN2ItYTI1Zi05YjBkZjY2YjVkOTIuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0._JHgAH_NO6rGuqKPEApTvIy8pgFcVOdCG41ByHyaRI4")
 
+    # creating embed
+    # embed = discord.Embed(title=f"Resultado: {max(results)}",
+    #                   description=f"ACERTO CRITICO!\nsoma total: {resultsSum}", colour=0x1eff00)
+    # embed.set_author(name=f"{message.author} rolou {whatRolled}", icon_url=message.author.avatar)
+    # embed.set_thumbnail(url="https://media4.giphy.com/media/3oriNPdeu2W1aelciY/giphy.gif?cid=ecf05e477kkd0jk7u2594mvgxk3pzvgl8fh8svtt6vtdck70&ep=v1_gifs_search&rid=giphy.gif&ct=g")
     embed.set_footer(text=f"dados: {results}")
-
+    # sending embed
     return embed
+    
+
+def singleRollEmbed(message, result, whatRolled):
+    if whatRolled[2:] == '20':
+        if result == '20':
+            embed = discord.Embed(title=f"Resultado: {result}")
+            embed.set_author(name=f"{message.author} rolou {whatRolled} acerto critico", icon_url=message.author.avatar)
+            embed.set_thumbnail(url="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4bcc2548-937b-4948-a8de-df85c179759b/dclcb4s-c9b126cf-505d-4d7b-a25f-9b0df66b5d92.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzRiY2MyNTQ4LTkzN2ItNDk0OC1hOGRlLWRmODVjMTc5NzU5YlwvZGNsY2I0cy1jOWIxMjZjZi01MDVkLTRkN2ItYTI1Zi05YjBkZjY2YjVkOTIuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0._JHgAH_NO6rGuqKPEApTvIy8pgFcVOdCG41ByHyaRI4")  
+            return embed
+    else:
+        embed = discord.Embed(title=f"Resultado: {result}")
+        embed.set_author(name=f"{message.author} rolou {whatRolled}", icon_url=message.author.avatar)
+        embed.set_thumbnail(url="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4bcc2548-937b-4948-a8de-df85c179759b/dclcb4s-c9b126cf-505d-4d7b-a25f-9b0df66b5d92.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzRiY2MyNTQ4LTkzN2ItNDk0OC1hOGRlLWRmODVjMTc5NzU5YlwvZGNsY2I0cy1jOWIxMjZjZi01MDVkLTRkN2ItYTI1Zi05YjBkZjY2YjVkOTIuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0._JHgAH_NO6rGuqKPEApTvIy8pgFcVOdCG41ByHyaRI4")    
+        return embed
     
 
 def lookForCritic(array):

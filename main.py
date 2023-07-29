@@ -4,15 +4,12 @@ import responses
 
 
 
-
-
-
+# main run function
 def run_discord_bot():
     TOKEN = ''
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
-
 
     # Assim que o bot iniciar
     @client.event
