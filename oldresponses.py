@@ -19,7 +19,7 @@ def handle_response(message, username) -> str:
                 return f'{username} rolou: **{result}**'    
             
         if p_message.split(" ")[0] == "rola":
-            return 'hmmmm viadinho kkkk, rola?'
+            return ''
 
         if p_message == 'rolar 1d20':
             return f'@{username} rolou 1d20, \nresultado: **{random.randint(1,20)}**'
